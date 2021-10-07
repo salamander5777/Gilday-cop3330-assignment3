@@ -7,7 +7,6 @@ package ex42;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 //Exercise 42 - Parsing a Data File. (Program that reads in a list from a file called `exercise42_input.txt` and prints it out in a tabular format.)
@@ -32,7 +31,6 @@ class Main {
     }
 
     public static void main( String[] args ) throws IOException {
-        Collections.sort(reader());
         int i = 0;
 
         //Code block below is used to properly print, in tabular format, the information found in the input text without commas.

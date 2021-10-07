@@ -44,12 +44,12 @@ class Main {
 
                 if(isFound(product_name, name)) {
                     System.out.print("Name: " + name + "\nPrice: " + price + "\nQuantity: " + quantity);
-                    return true;
+                    return false;
                 }
             }
         }
         System.out.print("Sorry, that product was not found in our inventory.\n");
-        return false;
+        return true;
     }
 
     public static boolean isFound(String product_name, String name){ //This method returning a 'true' value will allow a print to occur.
@@ -63,7 +63,7 @@ class Main {
         do{
             System.out.print("What is the product name? ");
             product_name = start_scan.nextLine(); //Reads in the product name.
-        }while(!productSearch(product_name));
+        }while(productSearch(product_name));
 
         start_scan.close();
     }

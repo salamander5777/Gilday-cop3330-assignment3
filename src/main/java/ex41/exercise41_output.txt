@@ -1,9 +1,9 @@
 Total of 7 names
 -----------------
-Ling, Mai
 Johnson, Jim
-Zarnecki, Sabrina
-Jones, Chris
 Jones, Aaron
+Jones, Chris
+Ling, Mai
 Swift, Geoffrey
 Xiong, Fong
+Zarnecki, Sabrina
