@@ -6,6 +6,7 @@ package ex46;
  */
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
 import java.util.Scanner;
@@ -53,6 +54,11 @@ class Main {
         }
         Map<String, Integer> sortedWordFrequency = new TreeMap<>(wordFrequency);
         histogramPrint(sortedWordFrequency);
+        Map<String, Integer> equivalentWordFrequency = new HashMap<>();
+        equivalentWordFrequency.put("badger", 7);
+        equivalentWordFrequency.put("mushroom", 2);
+        equivalentWordFrequency.put("snake", 1);
+        assertEquals(sortedWordFrequency, equivalentWordFrequency);
         start_scan.close();
     }
 }

@@ -12,8 +12,8 @@ import com.google.gson.stream.JsonReader;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -35,7 +35,7 @@ class Main {
                 "    {\"name\": \"Doodad\", \"price\": 5.00, \"quantity\": 10 }\n" +
                 "  ]\n" +
                 "}", actualJSONReader, JSONCompareMode.LENIENT);
-        try(JsonReader JSONReader = new JsonReader(new FileReader("src/main/java/ex44/exercise44_input.json"))) {
+        try(JsonReader JSONReader = new JsonReader(new StringReader(actualJSONReader))) {
             JSONReader.beginObject();
             JSONReader.nextName();
             JSONReader.beginArray();

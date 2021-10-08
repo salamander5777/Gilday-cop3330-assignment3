@@ -6,36 +6,39 @@ package ex43;
  */
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 //Exercise 43 - Website Generator. (Program that generates a website skeleton using user provided input.)
 class Main {
     @Test
     public static void folder_creator(String site_name, String js_answer, String css_answer) throws IOException { //This method is used to create the separate potential folders.
-        Files.createDirectories(Paths.get("src/main/website/" + site_name));
+        Path path1 = Files.createTempDirectory("website/" + site_name);
+        assertTrue(Files.exists(path1));
         System.out.print("Created ./website/" + site_name);
 
         if(js_answer.matches("y")){
-            Files.createDirectories(Paths.get("src/main/website/" + site_name + "/js"));
+            Path path2 = Files.createTempDirectory(site_name + "/js");
+            assertTrue(Files.exists(path2));
             System.out.print("\nCreated ./website/" + site_name + "/js");
         }
         if(css_answer.matches("y")){
-            Files.createDirectories(Paths.get("src/main/website/" + site_name + "/css"));
+            Path path3 = Files.createTempDirectory(site_name + "/css");
+            assertTrue(Files.exists(path3));
             System.out.print("\nCreated ./website/" + site_name + "/css");
         }
     }
 
     @Test
     public static void html_index(String site_name, String author_name) throws IOException { //This method is used to create the 'index.html' file.
-        Files.deleteIfExists(Path.of("src/main/website/" + site_name + "/index.html"));
-        Files.createFile(Paths.get("src/main/website/" + site_name + "/index.html"));
-        BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/website/" + site_name + "/index.html"));
+        Path indexPath = Files.createTempFile("website/" + site_name + "/index", ".html");
+        assertTrue(Files.exists(indexPath));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(String.valueOf(indexPath)));
         bw.write("<html>\n<head>\n  <title>\n       " + site_name + "\n  </title>\n</head>\n    <meta name=\"author\" content=" + "\"" + author_name + "\"" + ">\n"+ "</html>");
         System.out.print("\nCreated ./website/" + site_name + "/index.html");
         bw.close();
@@ -43,13 +46,13 @@ class Main {
 
     @Test
     public static void main( String[] args ) throws IOException {
-        System.out.print("Site name: ");
+        System.out.print("Site name: awesomeco");
         String site_name = "awesomeco"; //Sets the site name.
-        System.out.print("Author: ");
+        System.out.print("Author: Max Power");
         String author_name = "Max Power"; //Sets the author name.
-        System.out.print("Do you want a folder for JavaScript? ");
+        System.out.print("Do you want a folder for JavaScript? y");
         String js_answer = "y"; //Creates the Javascript folder.
-        System.out.print("Do you want a folder for CSS? ");
+        System.out.print("Do you want a folder for CSS? y");
         String css_answer = "y"; //Creates the CSS folder.
 
         folder_creator(site_name, js_answer, css_answer);

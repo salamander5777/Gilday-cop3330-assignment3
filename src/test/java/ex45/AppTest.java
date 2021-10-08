@@ -37,13 +37,14 @@ class Main {
 
     @Test
     public static void main( String[] args ) throws IOException {
-        System.out.print("What do you want the output file to be named? ");
+        System.out.print("What do you want the output file to be named? exercise45output");
         String outputFileName_input = "exercise45output";
 
         reader(); //Calls the method used to replace the word 'utilize' in the document
 
-        Files.deleteIfExists(Path.of("src/main/website/" + outputFileName_input + ".txt"));
-        FileWriter fileWriter = new FileWriter("src/main/java/ex45/" + outputFileName_input + ".txt");
+        Files.deleteIfExists(Path.of(outputFileName_input + ".txt"));
+        Path outputPath = Files.createTempFile(outputFileName_input, ".txt");
+        FileWriter fileWriter = new FileWriter(String.valueOf(outputPath));
         for(int i = 0; i<word_count; i++){
             fileWriter.write(reader().get(i));
         }

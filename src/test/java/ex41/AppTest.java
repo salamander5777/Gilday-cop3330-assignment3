@@ -7,7 +7,10 @@ package ex41;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -41,7 +44,8 @@ class Main {
     @Test
     public static void main( String[] args ) throws IOException {
         reader();
-        FileWriter fileWriter = new FileWriter("src/test/java/ex41/exercise41_output.txt");
+        Path outputPath = Files.createTempFile("exercise41_output", ".txt");
+        FileWriter fileWriter = new FileWriter(String.valueOf(outputPath));
         fileWriter.write("Total of " + name_amount + " names\n-----------------\n");
         for(int i = 0; i<name_amount; i++){
             fileWriter.write(reader().get(i));

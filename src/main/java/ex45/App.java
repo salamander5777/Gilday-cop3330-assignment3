@@ -37,7 +37,7 @@ class Main {
 
         reader(); //Calls the method used to replace the word 'utilize' in the document
 
-        Files.deleteIfExists(Path.of("src/main/website/" + outputFileName_input + ".txt"));
+        Files.deleteIfExists(Path.of("src/main/java/ex45/" + outputFileName_input + ".txt"));
         FileWriter fileWriter = new FileWriter("src/main/java/ex45/" + outputFileName_input + ".txt");
         for(int i = 0; i<line_count; i++){
             fileWriter.write(reader().get(i));
