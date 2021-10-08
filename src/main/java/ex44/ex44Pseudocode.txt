@@ -1,0 +1,32 @@
+This program takes a product name as input and retrieves the current price and quantity for that product.
+
+function boolean productSearch(String product_name){
+
+    Use 'try' for JsonReader of FileReader("src/main/java/ex44/exercise44_input.json")
+        Begin reading object, then name, then array.
+
+        Creation of a while loop that will loop until the input file has nothing new.
+            Begin reading of next object then create another while loop that will loop until nothing new.
+                Read in 'nextName()'. If 'nextName()' is equal to 'name', 'price', or 'quantity' then set the
+                'nextString()' equal to their respective variables.
+            End reading object.
+
+            If Objects.equals(product_name, name) is true then print "Name: " + name + "\nPrice: " + price +
+            "\nQuantity " + quantity.
+                return false, which will exit the current function.
+
+    If the function did not exit above then print out that the product was not found.
+    return true, which will exit the current function.
+
+end
+}
+
+function main(){
+
+    Creation of a do while that will loop as long as productSearch(product_name) is true (This will call the
+    function).
+        The inside of the while loop will print the prompt "What is the product name? ", and then takes in
+        user input.
+
+end
+}

@@ -42,18 +42,14 @@ class Main {
                 }
                 JSONReader.endObject();
 
-                if(isFound(product_name, name)) {
+                if(Objects.equals(product_name, name)) {
                     System.out.print("Name: " + name + "\nPrice: " + price + "\nQuantity: " + quantity);
-                    return false;
+                    return true;
                 }
             }
         }
         System.out.print("Sorry, that product was not found in our inventory.\n");
-        return true;
-    }
-
-    public static boolean isFound(String product_name, String name){ //This method returning a 'true' value will allow a print to occur.
-        return Objects.equals(product_name, name);
+        return false;
     }
 
     public static void main( String[] args ) throws IOException{
@@ -63,7 +59,7 @@ class Main {
         do{
             System.out.print("What is the product name? ");
             product_name = start_scan.nextLine(); //Reads in the product name.
-        }while(productSearch(product_name));
+        }while(!productSearch(product_name));
 
         start_scan.close();
     }

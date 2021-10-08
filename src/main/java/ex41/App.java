@@ -8,14 +8,14 @@ package ex41;
 import java.io.*;
 import java.util.*;
 
-//Exercise 41 - Name Sorter. (Program that reads in a list of names from a file called `exercise41_input.txt` and sorts the names alphabetically)
+//Exercise 41 - Name Sorter. (Program that reads in a list of names from a file called `exercise41_input.txt` and sorts the names alphabetically.)
 class Main {
     private static int name_amount;
     public static ArrayList<String> reader() throws FileNotFoundException { //This method is used for reading in individual lines from the input file.
         File file_input = new File("src/main/java/ex41/exercise41_input.txt"); //Providing an instance for the input file.
         Scanner start_scan = new Scanner(file_input); //Creation of a scanner object that will scan through the input file.
         name_amount = 0;
-        ArrayList<String> array = new ArrayList<>(); //Creation of the initial array that will hold names for the contest.
+        ArrayList<String> array = new ArrayList<>(); //Creation of the initial array that will hold names.
         while(start_scan.hasNextLine()){
             String input_name = start_scan.nextLine();
             array.add(input_name + "\n");

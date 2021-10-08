@@ -1,0 +1,33 @@
+This program reads `exercise46_input.txt` and counts the frequency of words in the file, then outputs in histogram
+format.
+
+Creation of a static int variable called 'word_length' which tracks the length of the longest word.
+function histogramPrint(Map<String, Integer> sortedWordFrequency){
+
+    Creation of a for loop that goes through the entrySet() of the Map.
+        Prints out the current getKey(), which is the word, formatted to the longest word +2.
+        Creation of an internal for loop where a variable 'i' is 0 and being incremented by 1 per loop up to the
+        getValue() set to the current key.
+            prints out 1 '*' per loop.
+
+end
+}
+
+function main(){
+
+    Creation of a new Map<String, Integer> which will be use each unique word as a key and the value being the
+    amount of times the word appeared.
+    Creation of the instance for text reading, and then creating a scanner that will read through it later.
+
+    Creation of a while loop that will loop until there are no new lines in the input text.
+        Creation of a string that will scan in each individual word. If the word is equal to a key already in the
+        Map then it will not be added, but the frequencyCount for the particular word will be incremented by one.
+        If the word is not equal to a key already in the Map then it will be set to a new key and the
+        frequencyCount value set to the word will be one.
+
+    Creation of a new TreeMap equal to the current Map created above. The new sorted Map is then used in the
+    function call histogramPrint(sortedWordFrequency);
+
+
+end
+}

@@ -1,0 +1,24 @@
+This program reads in a list of names from a file called `exercise41_input.txt` and sorts the names alphabetically.
+
+Creation of a static int variable called 'name_amount' which tracks the amount of names.
+function ArrayList<String> reader(){
+
+    Creation of the instance for text reading, and then creating a scanner that will read through it later.
+    Creation of an ArrayList that will later hold the names of the text file.
+
+    Use of a while loop to add the names to the array list and increment the 'name_amount' variable.
+
+    Sort the arraylist by using 'Collections.sort'.
+
+    return arraylist.
+end
+}
+
+function main(){
+
+    Call function 'reader()'.
+    Create new FileWriter called "exercise41_output.txt" in the same project space.
+    Print the properly formatted arraylist from reader() in the output file.
+
+end
+}

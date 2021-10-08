@@ -1,0 +1,28 @@
+This program reads 'exercise45_input.txt' and replaces all instances of the word 'utilize' with the word 'use'.
+
+Creation of a static int variable called 'line_count' which tracks the amount of lines in the text file.
+
+function ArrayList<String> reader(){
+
+    Creation of the instance for text reading, and then creating a scanner that will read through it later.
+    Creation of an ArrayList that will later hold the information of 'exercise45_input.txt'
+
+    Creation of a while loop that will loop until there are no more new lines. (Increment line_count each loop).
+        Creation of a string that will hold in the scanned line.
+        Creation of a string that will be equal to the string above, but with replaceAll("utilize","use").
+
+    return ArrayList.
+end
+}
+
+function main(){
+
+    Creation of the prompt "What do you want the output file to be named? ". If the text file already exist
+    in the current project folder then it will be deleted, otherwise it will be created.
+
+    Call the function 'reader()', then use a for loop of a variable incrementing by 1 per loop until it reaches
+    the value of 'line_count'.
+        Write to the new text file the information returned by 'reader()'.
+
+end
+}

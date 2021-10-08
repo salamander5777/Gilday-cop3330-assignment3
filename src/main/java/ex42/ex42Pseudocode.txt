@@ -1,0 +1,23 @@
+This program reads in a list from a file called `exercise42_input.txt` and prints it out in a tabular format.
+
+Creation of a static int variable called 'entry_amount' which tracks the amount of lines there are.
+function ArrayList<String> reader(){
+
+    Creation of the instance for text reading, and then creating a scanner that will read through it later.
+    Creation of an ArrayList that will later hold the names and salary found in the text file.
+
+    Use of a while loop to add the information of each line into the arraylist.
+        Creation of a String[] that holds information of each line, separating information through .split(",").
+        Adding each spot of String[] to the array, and then incrementing 'entry_amount' by 3.
+
+    return arraylist.
+end
+}
+
+function main(){
+
+    Using a while loop until a variable i,  incremented by three per loop, is equal to 'entry_amount'.
+        Call 'reader()' in a format print function to properly print the information in tabular fashion.
+
+end
+}

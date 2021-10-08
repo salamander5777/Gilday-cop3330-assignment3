@@ -1,0 +1,40 @@
+This program generates a website skeleton using user provided input.
+
+function folder_creator(String site_name, String js_answer, String css_answer){
+
+    Creation of the directory for 'src/main/website/' + site_name.
+        Then print that the directory has been created.
+
+    If js_answer is 'y' then create directory for 'src/main/website/' + site_name + '/js'.
+        Then print that the folder has been created.
+    If css_answer is 'y' then create directory for 'src/main/website/' + site_name + '/css'.
+        Then print that the folder has been created.
+
+end
+}
+
+function html_index(String site_name, String author_name){
+
+    Delete 'src/main/website/' + site_name + '/index.html' if it exists, otherwise create.
+    Use a BufferedWriter to write the site name as a title in the html file, and the author name as metadata.
+        Then print that the html file has been created.
+
+end
+}
+
+function main(){
+
+    Print prompt for "Site Name: "
+    Take input of site name.
+    Print prompt for "Author "
+    Take input for author.
+    Print prompt for "Do you want a folder for Javascript? "
+    Take input of 'y' for yes and any other input for no.
+    Print prompt for "Do you want a folder for CSS? "
+    Take input of 'y' for yes and any other input for no.
+
+    Call function folder_creator(site_name, js_answer, css_answer).
+    Call function html_index(site_name, author_name).
+
+end
+}
