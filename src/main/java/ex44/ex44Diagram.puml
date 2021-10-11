@@ -4,7 +4,7 @@
 class Main
 class Search
 
-Main <|-- Search
+Main <|.. Search
 
 class Search {
     +JsonReader JSONReader

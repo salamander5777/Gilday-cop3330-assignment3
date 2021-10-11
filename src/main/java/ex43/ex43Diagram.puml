@@ -4,7 +4,7 @@
 class Main
 class Creator
 
-Main <|-- Creator
+Main <|.. Creator
 
 class Creator {
     +BufferedWriter bw
