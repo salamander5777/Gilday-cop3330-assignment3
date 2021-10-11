@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Main
+
+class Main {
+    {static} -int line_count
+    +File file_input
+    +Scanner start_scan
+    +ArrayList<String> array
+    +String input_line
+    +String replace_utilize
+
+    +String outputFileName_input
+    {static} +ArrayList<String> reader()
+    {static} +void main()
+}
+
+@enduml
