@@ -2,7 +2,20 @@ This program reads `exercise46_input.txt` and counts the frequency of words in t
 format.
 
 Creation of a static int variable called 'word_length' which tracks the length of the longest word.
-function histogramPrint(Map<String, Integer> sortedWordFrequency){
+
+function organizeMap(Map<String, Integer> wordFrequency){
+
+    Creation of a new LinkedHashMap<String, Integer> to keep the current keys and values of the
+    Map<String, Integer> created through main.
+        Stream the entrySet() of the initial map, comparing the reverse order of the values and inputting them,
+        along with their matching key, into the LinkedHashMap. Repeat this process until there are no more keys
+        in the initial map.
+    Call the histogramPrint function in order to print out the sorted list.
+
+end
+}
+
+function histogramPrint(LinkedHashMap<String, Integer> sortedWordFrequency){
 
     Creation of a for loop that goes through the entrySet() of the Map.
         Prints out the current getKey(), which is the word, formatted to the longest word +2.
@@ -25,8 +38,8 @@ function main(){
         If the word is not equal to a key already in the Map then it will be set to a new key and the
         frequencyCount value set to the word will be one.
 
-    Creation of a new TreeMap equal to the current Map created above. The new sorted Map is then used in the
-    function call histogramPrint(sortedWordFrequency);
+    Function call Histogram.organizeMap(wordFrequency) to organize the map and then print the new map through
+    histogramPrint.
 
 
 end

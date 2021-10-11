@@ -2,18 +2,26 @@
 'https://plantuml.com/class-diagram
 
 class Main
+class Search
 
-class Main {
+Main <|-- Search
+
+class Search {
     +JsonReader JSONReader
     +String name
     +Double price
     +int quantity
     +String n
+    {static} +productSearch()
+}
 
+class Main {
+    +String firstLetter
+    +String restOfLetters
     +Scanner start_scan
     +String product_name
-    {static} +boolean productSearch(String)
-    {static} +void main()
+    {static} +capitalize()
+    {static} +main()
 }
 
 @enduml

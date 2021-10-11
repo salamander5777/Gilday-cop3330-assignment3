@@ -2,18 +2,25 @@
 'https://plantuml.com/class-diagram
 
 class Main
+class Read
+
+Main <|-- Read
+
+class Read {
+   +int line_count
+   +File file_input
+   +Scanner start_scan
+   +ArrayList<String> array
+   +String input_line
+   +String replace_utilize
+   {static} +reader()
+}
 
 class Main {
-    {static} -int line_count
-    +File file_input
     +Scanner start_scan
-    +ArrayList<String> array
-    +String input_line
-    +String replace_utilize
-
     +String outputFileName_input
-    {static} +ArrayList<String> reader()
-    {static} +void main()
+    +FileWriter fileWriter
+    {static} +main()
 }
 
 @enduml

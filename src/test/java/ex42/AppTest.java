@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //Exercise 42 - Parsing a Data File. (Program that reads in a list from a file called `exercise42_input.txt` and prints it out in a tabular format.)
-class Main {
-    private static int name_amount;
+class Read {
+    public static int entry_amount;
 
     @Test
     public static ArrayList<String> reader(){ //This method is used for reading in individual lines from the input file.
@@ -24,7 +24,7 @@ class Main {
                 "Xiong,Fong,65000\n" +
                 "Zarnecki,Sabrina,51500";
         Scanner start_scan = new Scanner(file_input); //Creation of a scanner object that will scan through the input file.
-        name_amount = 0;
+        entry_amount = 0;
         ArrayList<String> array = new ArrayList<>(); //Creation of the initial array that will hold the first name, last name, and salary found in the input text.
         while(start_scan.hasNextLine()){
             String input_name = start_scan.nextLine();
@@ -32,12 +32,14 @@ class Main {
             array.add(split_comma[0]);
             array.add(split_comma[1]);
             array.add(split_comma[2] + "\n");
-            name_amount = name_amount+3;
+            entry_amount = entry_amount+3;
         }
         start_scan.close();
         return array;
     }
+}
 
+class Main {
     @Test
     public static void main( String[] args ){
         int i = 0;
@@ -45,8 +47,8 @@ class Main {
         //Code block below is used to properly print, in tabular format, the information found in the input text without commas.
         System.out.format("%-10s%-10s%-6s", "Last", "First", "Salary\n--------------------------\n");
         do{
-            System.out.format("%-10s%-10s%-6s", reader().get(i), reader().get(i+1), reader().get(i+2));
+            System.out.format("%-10s%-10s%-6s", Read.reader().get(i), Read.reader().get(i+1), Read.reader().get(i+2));
             i = i+3;
-        }while(i < name_amount);
+        }while(i < Read.entry_amount);
     }
 }

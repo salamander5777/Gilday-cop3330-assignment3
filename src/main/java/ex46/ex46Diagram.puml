@@ -2,17 +2,24 @@
 'https://plantuml.com/class-diagram
 
 class Main
+class Histogram
+Main <|-- Histogram
+
+class Histogram {
+    {static} +int word_length
+    +LinkedHashMap<String, Integer> sortedWordFrequency
+    {static} +organizeMap()
+    {static} +histogramPrint()
+}
 
 class Main {
-    {static} -int word_length
+    +int word_length
     +Map<String, Integer> wordFrequency
     +File file_input
     +Scanner start_scan
     +String input_word
     +int frequencyCount
-    +Map<String, Integer> sortedWordFrequency
-    {static} +void histogramPrint(Map)
-    {static} +void main()
+    {static} +main()
 }
 
 @enduml

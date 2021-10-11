@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 //Exercise 43 - Website Generator. (Program that generates a website skeleton using user provided input.)
-class Main {
-    public static void folder_creator(String site_name, String js_answer, String css_answer) throws IOException { //This method is used to create the separate potential folders.
+class Creator {
+    public static void folder_creator(String site_name, String js_answer, String css_answer) throws IOException{ //This method is used to create the separate potential folders.
         Files.createDirectories(Paths.get("src/main/website/" + site_name));
         System.out.print("Created ./website/" + site_name);
 
@@ -29,7 +29,7 @@ class Main {
         }
     }
 
-    public static void html_index(String site_name, String author_name) throws IOException { //This method is used to create the 'index.html' file.
+    public static void html_index(String site_name, String author_name) throws IOException{ //This method is used to create the 'index.html' file.
         Files.deleteIfExists(Path.of("src/main/website/" + site_name + "/index.html"));
         Files.createFile(Paths.get("src/main/website/" + site_name + "/index.html"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/website/" + site_name + "/index.html"));
@@ -37,9 +37,10 @@ class Main {
         System.out.print("\nCreated ./website/" + site_name + "/index.html");
         bw.close();
     }
+}
 
-
-    public static void main( String[] args ) throws IOException {
+class Main {
+    public static void main( String[] args ) throws IOException{
         Scanner start_scan = new Scanner(System.in); //Creation of a scanner object to allow for user input.
 
         System.out.print("Site name: ");
@@ -51,8 +52,8 @@ class Main {
         System.out.print("Do you want a folder for CSS? ");
         String css_answer = start_scan.nextLine(); //Reads in whether the user wants a CSS folder for the site.
 
-        folder_creator(site_name, js_answer, css_answer);
-        html_index(site_name, author_name);
+        Creator.folder_creator(site_name, js_answer, css_answer);
+        Creator.html_index(site_name, author_name);
         start_scan.close();
     }
 }

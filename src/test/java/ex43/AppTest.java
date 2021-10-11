@@ -15,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 //Exercise 43 - Website Generator. (Program that generates a website skeleton using user provided input.)
-class Main {
+class Creator {
     @Test
     public static void folder_creator(String site_name, String js_answer, String css_answer) throws IOException { //This method is used to create the separate potential folders.
         Path path1 = Files.createTempDirectory("website/" + site_name);
@@ -43,19 +43,29 @@ class Main {
         System.out.print("\nCreated ./website/" + site_name + "/index.html");
         bw.close();
     }
+}
 
+class Main {
     @Test
     public static void main( String[] args ) throws IOException {
-        System.out.print("Site name: awesomeco");
-        String site_name = "awesomeco"; //Sets the site name.
-        System.out.print("Author: Max Power");
-        String author_name = "Max Power"; //Sets the author name.
-        System.out.print("Do you want a folder for JavaScript? y");
-        String js_answer = "y"; //Creates the Javascript folder.
-        System.out.print("Do you want a folder for CSS? y");
-        String css_answer = "y"; //Creates the CSS folder.
+        System.out.print("Site name: ");
+        String expected_site_name = "awesomeco";
+        String site_name = "awesomeco";
+        assertSame(expected_site_name, site_name);
+        System.out.print("Author: ");
+        String expected_author_name = "Max Power";
+        String author_name = "Max Power";
+        assertSame(expected_author_name, author_name);
+        System.out.print("Do you want a folder for JavaScript? ");
+        String expected_js_answer = "y";
+        String js_answer = "y";
+        assertSame(expected_js_answer, js_answer);
+        System.out.print("Do you want a folder for CSS? ");
+        String expected_css_answer = "y";
+        String css_answer = "y";
+        assertSame(expected_css_answer, css_answer);
 
-        folder_creator(site_name, js_answer, css_answer);
-        html_index(site_name, author_name);
+        Creator.folder_creator(site_name, js_answer, css_answer);
+        Creator.html_index(site_name, author_name);
     }
 }

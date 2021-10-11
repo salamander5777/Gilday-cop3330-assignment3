@@ -16,11 +16,11 @@ import java.util.Collections;
 import java.util.Scanner;
 
 //Exercise 41 - Name Sorter. (Program that reads in a list of names from a file called `exercise41_input.txt` and sorts the names alphabetically.)
-class Main {
-    private static int name_amount;
+class Read {
+    public static int name_amount;
 
     @Test
-    public static ArrayList<String> reader() { //This method is used for reading in individual lines from the input file.
+    public static ArrayList<String> reader(){ //This method is used for reading in individual lines from the input file.
         String file_input = "Ling, Mai\n" +
                 "Johnson, Jim\n" +
                 "Zarnecki, Sabrina\n" +
@@ -30,7 +30,7 @@ class Main {
                 "Xiong, Fong";
         Scanner start_scan = new Scanner(file_input); //Creation of a scanner object that will scan through the input file.
         name_amount = 0;
-        ArrayList<String> array = new ArrayList<>(); //Creation of the initial array that will hold names found in the input text.
+        ArrayList<String> array = new ArrayList<>(); //Creation of the initial array that will hold names.
         while(start_scan.hasNextLine()){
             String input_name = start_scan.nextLine();
             array.add(input_name + "\n");
@@ -40,15 +40,17 @@ class Main {
         Collections.sort(array);
         return array;
     }
+}
 
+class Main {
     @Test
     public static void main( String[] args ) throws IOException {
-        reader();
+        Read.reader();
         Path outputPath = Files.createTempFile("exercise41_output", ".txt");
         FileWriter fileWriter = new FileWriter(String.valueOf(outputPath));
-        fileWriter.write("Total of " + name_amount + " names\n-----------------\n");
-        for(int i = 0; i<name_amount; i++){
-            fileWriter.write(reader().get(i));
+        fileWriter.write("Total of " + Read.name_amount + " names\n-----------------\n");
+        for(int i = 0; i<Read.name_amount; i++){
+            fileWriter.write(Read.reader().get(i));
         }
         fileWriter.close();
     }

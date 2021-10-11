@@ -2,16 +2,23 @@
 'https://plantuml.com/class-diagram
 
 class Main
+class Read
 
-class Main {
-    {static} -int entry_amount
+Main <|-- Read
+
+class Read {
+    {static} +int entry_amount
     +File file_input
     +Scanner start_scan
     +ArrayList<String> array
     +String input_name
     +String[] split_comma
-    {static} +ArrayList<String> reader()
-    {static} +void main()
+    {static} +reader()
+}
+
+class Main {
+    +int i
+    {static} +main()
 }
 
 @enduml

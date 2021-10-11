@@ -2,18 +2,23 @@
 'https://plantuml.com/class-diagram
 
 class Main
+class Creator
+
+Main <|-- Creator
+
+class Creator {
+    +BufferedWriter bw
+    {static} +folder_creator()
+    {static} +html_index(String, String)
+}
 
 class Main {
-    +BufferedWriter bw
-
     +Scanner start_scan
     +String site_name
     +String author_name
     +String js_answer
     +String css_answer
-    {static} +void folder_creator()
-    {static} +void html_index(String, String)
-    {static} +void main()
+    {static} +main()
 }
 
 @enduml

@@ -6,6 +6,7 @@ package ex44;
  */
 
 import org.json.JSONException;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.stream.JsonReader;
@@ -15,10 +16,9 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Objects;
-import java.util.Scanner;
 
 //Exercise 44 - Product Search. (Program that takes a product name as input and retrieves the current price and quantity for that product.)
-class Main {
+class Search {
     @Test
     public static boolean productSearch(String product_name) throws IOException, JSONException { //Creates JsonReader and loops through the Json text.
         String actualJSONReader = "{\n" +
@@ -35,11 +35,11 @@ class Main {
                 "    {\"name\": \"Doodad\", \"price\": 5.00, \"quantity\": 10 }\n" +
                 "  ]\n" +
                 "}", actualJSONReader, JSONCompareMode.LENIENT);
+
         try(JsonReader JSONReader = new JsonReader(new StringReader(actualJSONReader))) {
             JSONReader.beginObject();
             JSONReader.nextName();
             JSONReader.beginArray();
-
             String name = null;
             Double price = null;
             int quantity = 0;
@@ -63,31 +63,37 @@ class Main {
                 }
                 JSONReader.endObject();
 
-                if(isFound(product_name, name)) {
+                if(Objects.equals(product_name, name)) {
                     System.out.print("Name: " + name + "\nPrice: " + price + "\nQuantity: " + quantity);
-                    return true;
+                    return false;
                 }
             }
         }
         System.out.print("Sorry, that product was not found in our inventory.\n");
-        return false;
+        return true;
     }
+}
 
+class Main {
     @Test
-    public static boolean isFound(String product_name, String name){ //This method returning a 'true' value will allow a print to occur.
-        return Objects.equals(product_name, name);
+    public static String capitalize(String product_name) {
+        String firstLetter = product_name.substring(0,1);
+        String restOfLetters = product_name.substring(1);
+        firstLetter = firstLetter.toUpperCase();
+        product_name = firstLetter + restOfLetters;
+        return product_name;
     }
 
     @Test
     public static void main( String[] args ) throws IOException, JSONException {
-        Scanner start_scan = new Scanner(System.in); //Creation of a scanner object to allow for user input.
         String product_name;
+        String expected = "Widget";
 
         do{
             System.out.print("What is the product name? ");
             product_name = "Widget";
-        }while(productSearch(product_name));
-
-        start_scan.close();
+            product_name = capitalize(product_name);
+            assertSame(expected, product_name);
+        }while(Search.productSearch(product_name));
     }
 }
