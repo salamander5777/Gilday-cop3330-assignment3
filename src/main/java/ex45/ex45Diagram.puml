@@ -4,7 +4,7 @@
 class Main
 class Read
 
-Main <|.. Read
+Main --|> Read
 
 class Read {
    +int line_count
