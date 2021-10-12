@@ -5,12 +5,12 @@ package ex41;
  *  Copyright 2021 Michael Gilday
  */
 
+import static org.junit.gen5.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -21,14 +21,16 @@ class Read {
 
     @Test
     public static ArrayList<String> reader(){ //This method is used for reading in individual lines from the input file.
-        String file_input = "Ling, Mai\n" +
+        File file_input = new File("src/main/java/ex41/exercise41_input.txt");
+        assertTrue(file_input.exists());
+        String assumed_file_input = "Ling, Mai\n" +
                 "Johnson, Jim\n" +
                 "Zarnecki, Sabrina\n" +
                 "Jones, Chris\n" +
                 "Jones, Aaron\n" +
                 "Swift, Geoffrey\n" +
                 "Xiong, Fong";
-        Scanner start_scan = new Scanner(file_input); //Creation of a scanner object that will scan through the input file.
+        Scanner start_scan = new Scanner(assumed_file_input); //Creation of a scanner object that will scan through the input file.
         name_amount = 0;
         ArrayList<String> array = new ArrayList<>(); //Creation of the initial array that will hold names.
         while(start_scan.hasNextLine()){
@@ -46,8 +48,7 @@ class Main {
     @Test
     public static void main( String[] args ) throws IOException {
         Read.reader();
-        Path outputPath = Files.createTempFile("exercise41_output", ".txt");
-        FileWriter fileWriter = new FileWriter(String.valueOf(outputPath));
+        FileWriter fileWriter = new FileWriter("src/main/java/ex41/exercise41_output.txt");
         fileWriter.write("Total of " + Read.name_amount + " names\n-----------------\n");
         for(int i = 0; i<Read.name_amount; i++){
             fileWriter.write(Read.reader().get(i));

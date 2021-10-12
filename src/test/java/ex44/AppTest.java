@@ -7,15 +7,19 @@ package ex44;
 
 import org.json.JSONException;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.stream.JsonReader;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
+import java.util.Scanner;
 
 //Exercise 44 - Product Search. (Program that takes a product name as input and retrieves the current price and quantity for that product.)
 class Search {
@@ -28,15 +32,10 @@ class Search {
                 "    {\"name\": \"Doodad\", \"price\": 5.00, \"quantity\": 10 }\n" +
                 "  ]\n" +
                 "}";
-        JSONAssert.assertEquals("{\n" +
-                "  \"products\" : [\n" +
-                "    {\"name\": \"Widget\", \"price\": 25.00, \"quantity\": 5 },\n" +
-                "    {\"name\": \"Thing\", \"price\": 15.00, \"quantity\": 5 },\n" +
-                "    {\"name\": \"Doodad\", \"price\": 5.00, \"quantity\": 10 }\n" +
-                "  ]\n" +
-                "}", actualJSONReader, JSONCompareMode.LENIENT);
+        Assertions.assertTrue(Files.exists(Path.of("src/main/java/ex44/exercise44_input.json")));
+        JSONAssert.assertEquals(String.valueOf(new FileReader("src/main/java/ex44/exercise44_input.json")), actualJSONReader, JSONCompareMode.LENIENT);
 
-        try(JsonReader JSONReader = new JsonReader(new StringReader(actualJSONReader))) {
+        try(JsonReader JSONReader = new JsonReader(new FileReader("src/main/java/ex44/exercise44_input.json"))) {
             JSONReader.beginObject();
             JSONReader.nextName();
             JSONReader.beginArray();
@@ -81,19 +80,24 @@ class Main {
         String restOfLetters = product_name.substring(1);
         firstLetter = firstLetter.toUpperCase();
         product_name = firstLetter + restOfLetters;
+        String expected_product_name = "Widget";
+        Assertions.assertEquals(expected_product_name, product_name);
         return product_name;
     }
 
     @Test
     public static void main( String[] args ) throws IOException, JSONException {
+        Scanner start_scan = new Scanner(System.in); //Creation of a scanner object to allow for user input.
         String product_name;
-        String expected = "Widget";
+        String expected_product_name = "Widget";
 
         do{
             System.out.print("What is the product name? ");
-            product_name = "Widget";
+            product_name = start_scan.nextLine(); //Reads in the product name.
             product_name = capitalize(product_name);
-            assertSame(expected, product_name);
+            assertSame(expected_product_name, product_name);
         }while(Search.productSearch(product_name));
+
+        start_scan.close();
     }
 }

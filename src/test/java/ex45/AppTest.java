@@ -6,6 +6,7 @@ package ex45;
  */
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -17,10 +18,9 @@ import java.util.Scanner;
 class Read {
     public static int line_count;
 
-    public static ArrayList<String> reader() { //This method is used for reading in individual words from the input file.
-        String file_input = "One should never utilize the word \"utilize\" in writing. Use \"use\" instead.\n" +
-                "For example, \"She uses an IDE to write her Java programs\" instead of \"She\n" +
-                "utilizes an IDE to write her Java programs\".";
+    public static ArrayList<String> reader() throws FileNotFoundException { //This method is used for reading in individual words from the input file.
+        File file_input = new File("src/main/java/ex45/exercise45_input.txt"); //Providing an instance for the input file.
+        Assertions.assertTrue(file_input.exists());
         Scanner start_scan = new Scanner(file_input); //Creation of a scanner object that will scan through the input file.
         line_count = 0;
         ArrayList<String> array = new ArrayList<>(); //Creation of the initial array that will hold the information of the input text.
@@ -31,6 +31,11 @@ class Read {
             line_count++;
         }
         start_scan.close();
+        ArrayList<String> expected_array = new ArrayList<>();
+        expected_array.add("One should never use the word \"use\" in writing. Use \"use\" instead.\n");
+        expected_array.add("For example, \"She uses an IDE to write her Java programs\" instead of \"She\n");
+        expected_array.add("uses an IDE to write her Java programs\".\n");
+        Assertions.assertEquals(array, expected_array);
         return array;
     }
 }
@@ -38,17 +43,23 @@ class Read {
 class Main {
     @Test
     public static void main( String[] args ) throws IOException {
-        System.out.print("What do you want the output file to be named? exercise45output");
-        String outputFileName_input = "exercise45output";
+        Scanner start_scan = new Scanner(System.in); //Creation of a scanner object to allow for user input.
+        System.out.print("What do you want the output file to be named? ");
+        String expected_outputFileName_input = "exercise45output";
+        String outputFileName_input = start_scan.nextLine();
+        Assertions.assertEquals(expected_outputFileName_input, outputFileName_input);
 
         Read.reader(); //Calls the method used to replace the word 'utilize' in the document
 
         Files.deleteIfExists(Path.of(outputFileName_input + ".txt"));
         Path outputPath = Files.createTempFile(outputFileName_input, ".txt");
-        FileWriter fileWriter = new FileWriter(String.valueOf(outputPath));
+        FileWriter fileWriter = new FileWriter("src/main/java/ex45/" + outputFileName_input + ".txt");
+        FileWriter expected_fileWriter = new FileWriter(String.valueOf(outputPath));
         for(int i = 0; i<Read.line_count; i++){
             fileWriter.write(Read.reader().get(i));
+            expected_fileWriter.write(Read.reader().get(i));
         }
         fileWriter.close();
+        start_scan.close();
     }
 }

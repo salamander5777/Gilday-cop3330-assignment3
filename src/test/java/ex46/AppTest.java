@@ -8,6 +8,8 @@ package ex46;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.Scanner;
 
@@ -39,12 +41,10 @@ class Histogram{
 
 class Main {
     @Test
-    public static void main( String[] args ){
+    public static void main( String[] args ) throws FileNotFoundException {
         Map<String, Integer> wordFrequency = new HashMap<>(); //Creation of a map that will track each individual word and the amount of times they were input.
-        String file_input = "badger badger badger\n" +
-                "badger mushroom\n" +
-                "mushroom snake badger badger\n" +
-                "badger";
+        File file_input = new File("src/main/java/ex46/exercise46_input.txt"); //Providing an instance for the input file.
+        Assertions.assertTrue(file_input.exists());
         Scanner start_scan = new Scanner(file_input); //Creation of a scanner object that will scan through the input file.
         int word_length = 0;
 
